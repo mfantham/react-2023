@@ -1,0 +1,23 @@
+{
+  "name": "react-2023",
+  "version": "1.0.0",
+  "description": "A template for my React projects in 2023.",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "jest"
+  },
+  "author": "Marcus Fantham",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "latest",
+    "parcel": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "prettier": "latest",
+    "process": "^0.11.10",
+    "typescript": "latest"
+  }
+}
