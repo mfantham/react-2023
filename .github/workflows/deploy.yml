@@ -1,0 +1,48 @@
+on: workflow_dispatch
+name: Deploy
+jobs:
+  build-and-publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "yarn"
+
+      - name: NPM Build
+        run: |
+          yarn install
+          yarn build
+        env:
+          CI: false
+
+      - name: Get project ID from package.json
+        id: project
+        run: |
+          PROJECT_ID=$(node -p "require('./package.json').gcp.projectId")
+          if [ "$PROJECT_ID" = "your-project-id" ]; then
+            echo "❌ Error: Please update the projectId in package.json"
+            echo "Current value: $PROJECT_ID"
+            echo "Change 'your-project-id' to your actual GCP project ID"
+            exit 1
+          fi
+          echo "id=$PROJECT_ID" >> $GITHUB_OUTPUT
+
+      - name: Set up gCloud auth
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ steps.project.outputs.id }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gCloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ steps.project.outputs.id }}
+
+      - name: Deploy app to GCP
+        run: yarn deploy

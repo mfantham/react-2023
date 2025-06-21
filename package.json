@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "A template for my React projects in 2023.",
   "scripts": {
+    "build": "parcel build src/index.html",
+    "deploy": "gcloud app deploy",
+    "gcp-build": "yarn build",
     "start": "parcel src/index.html",
     "test": "jest"
+  },
+  "gcp": {
+    "projectId": "your-project-id"
   },
   "author": "Marcus Fantham",
   "license": "MIT",
