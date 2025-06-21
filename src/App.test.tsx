@@ -6,7 +6,7 @@ describe("App", () => {
     const { container } = render(<App />);
     const heading = container.querySelector("h1");
     expect(heading?.textContent).toBe(
-      "React TypeScript Parcel Starter Template"
+      "React TypeScript Parcel Starter Template",
     );
   });
 });
