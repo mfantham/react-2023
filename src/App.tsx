@@ -4,4 +4,4 @@ export const App = () => {
       <h1>React TypeScript Parcel Starter Template</h1>
     </div>
   );
-}
+};
