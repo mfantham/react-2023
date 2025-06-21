@@ -13,9 +13,15 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@testing-library/dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/jest": "latest",
     "@types/react": "latest",
+    "jest": "latest",
+    "jest-environment-jsdom": "latest",
     "parcel": "latest",
     "prettier": "latest",
+    "ts-jest": "latest",
     "typescript": "latest"
   }
 }
