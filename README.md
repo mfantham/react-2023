@@ -47,8 +47,9 @@ Cloud App Engine site.
 ### Setup:
 
 1. Create a gCloud project
-2. Update the project name in `package.json` → `gcp.projectId`
-3. Create a service account and add the key as a repository secret named `GCP_SA_KEY`:
+2. Enable billing in the project (required for AppEngine)
+3. Update the project name in `package.json` → `gcp.projectId`
+4. Create a service account and add the key as a repository secret named `GCP_SA_KEY`:
    ```bash
    gh secret set GCP_SA_KEY --body "$(cat path/to/your-service-account-key.json)"
    ```
