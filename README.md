@@ -46,13 +46,25 @@ Cloud App Engine site.
 
 ### Setup:
 
+- The `create-gcloud-project.sh` script is designed to run the following steps:
+
 1. Create a gCloud project
 2. Enable billing in the project (required for AppEngine)
 3. Update the project name in `package.json` → `gcp.projectId`
-4. Create a service account and add the key as a repository secret named `GCP_SA_KEY`:
-   ```bash
-   gh secret set GCP_SA_KEY --body "$(cat path/to/your-service-account-key.json)"
-   ```
+4. Create a service account with the following roles:
+
+   - appengine.deployer
+   - appengine.serviceAdmin
+   - cloudbuild.builds.editor
+   - storage.objectAdmin
+   - iam.serviceAccountUser
+   - iam.serviceAccountTokenCreator
+
+5. Generate a key and add it as a repository secret named `GCP_SA_KEY`:
+
+```bash
+gh secret set GCP_SA_KEY --body "$(cat path/to/your-service-account-key.json)"
+```
 
 ### Deploy:
 
